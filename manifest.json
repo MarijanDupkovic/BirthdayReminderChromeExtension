@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Fast birthday reminder",
+  "version": "1.0",
+  "description": "A fast birthday reminder",
+  "permissions": [
+    "sidePanel"
+  ],
+  "author": "CodingSmodi",
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "script.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
