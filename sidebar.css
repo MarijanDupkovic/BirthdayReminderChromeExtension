@@ -48,16 +48,36 @@ button:hover {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap:1rem;
+  gap: 1rem;
 }
 
-.nextBirtdayContainer{
+.nextBirtdayContainer {
   border: 2px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+#export {
+  align-self: flex-end;
+  max-height: 35px;
+
+}
+
+.import-export {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.import-container {
+  display: flex;
+  flex-direction: column;
+  gap:0.5rem;
+  border-left: 2px solid #ddd;
+  padding-left: 1rem;
 }
 
 .d-none {
