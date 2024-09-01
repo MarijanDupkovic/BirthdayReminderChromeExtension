@@ -37,60 +37,54 @@ function getBirthdays() {
 
 function listBirthdays() {
   const table = document.getElementById('table');
-  table.innerHTML = ''; // Clear existing rows
-
+  table.innerHTML = '';
+  table.innerHTML = createTableHeader();
   birthdays.forEach((birthday) => {
-    const row = document.createElement('tr');
-    console.log(birthday.id);
-
-    row.innerHTML = `
-      <td>${birthday.firstName}</td>
-      <td>${birthday.name}</td>
-      <td>${birthday.birthday}</td>
-      <td><button class="delete-btn" data-id="${birthday.id}">X</button></td>
-    `;
-
-    table.appendChild(row);
-
-    // Add event listener to the delete button
-    row.querySelector('.delete-btn').addEventListener('click', function () {
-      const id = this.getAttribute('data-id');
-      deleteBirthday(id);
-    });
+    createRows(birthday, table);
   });
 }
 
+function createRows(birthday, table) {
+  const row = document.createElement('tr');
+  row.innerHTML = createRow(birthday.firstName, birthday.name, birthday.birthday, birthday.id);
+  table.appendChild(row);
+  row.querySelector('.delete-btn').addEventListener('click', function () {
+    const id = this.getAttribute('data-id');
+    deleteBirthday(id);
+  });
+}
 
 function addBirthday() {
   const firstName = document.getElementById('firstName').value;
   const name = document.getElementById('lastName').value;
   const birthday = document.getElementById('birthday').value;
   const id = birthdays.length;
-
-  birthdays.push({ name: name, firstName, birthday, id: id });
-
-  let table = document.getElementById('table');
-
+  const newBirthday = { name: name, firstName, birthday, id: id };
+  birthdays.push(newBirthday);
   const row = document.createElement('tr');
-  row.innerHTML = `
-    <td>${firstName}</td>
-    <td>${name}</td>
-    <td>${birthday}</td>
-    <td><button class="delete-btn" data-id="${id}">X</button></td>
-  `;
-
-  table.appendChild(row);
-
-  document.getElementById('firstName').value = '';
-  document.getElementById('lastName').value = '';
-  document.getElementById('birthday').value = '';
+  row.innerHTML = createRow(firstName, name, birthday, id);
+  addRowOnTable(row);
+  addDeleteListener(row);
+  resetInputs();
   saveBirthdays();
+}
 
-  // Add event listener to the delete button
+function addRowOnTable(row) {
+  let table = document.getElementById('table');
+  table.appendChild(row);
+}
+
+function addDeleteListener(row) {
   row.querySelector('.delete-btn').addEventListener('click', function () {
     const id = this.getAttribute('data-id');
     deleteBirthday(id);
   });
+}
+
+function resetInputs() {
+  document.getElementById('firstName').value = '';
+  document.getElementById('lastName').value = '';
+  document.getElementById('birthday').value = '';
 }
 
 function saveBirthdays() {
@@ -110,4 +104,23 @@ function deleteBirthday(id) {
     saveBirthdays();
     listBirthdays();
   }
+}
+
+function createTableHeader() {
+  return `
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Birthday</th>
+      </tr>
+    `;
+}
+
+function createRow(firstName, name, birthday, id) {
+  return `
+      <td>${firstName}</td>
+      <td>${name}</td>
+      <td>${birthday}</td>
+      <td><button class="delete-btn" data-id="${id}">X</button></td>
+    `;
 }
