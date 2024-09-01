@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function initData() {
   getBirthdays();
   listBirthdays();
+  determineNextBirthday();
 }
 
 function getBirthdays() {
@@ -67,6 +68,8 @@ function addBirthday() {
   addDeleteListener(row);
   resetInputs();
   saveBirthdays();
+  determineNextBirthday();
+
 }
 
 function addRowOnTable(row) {
@@ -104,6 +107,7 @@ function deleteBirthday(id) {
     saveBirthdays();
     listBirthdays();
   }
+  determineNextBirthday();
 }
 
 function createTableHeader() {
@@ -123,4 +127,24 @@ function createRow(firstName, name, birthday, id) {
       <td>${birthday}</td>
       <td><button class="delete-btn" data-id="${id}">X</button></td>
     `;
+}
+
+
+function determineNextBirthday() {
+  const today = new Date();
+  let nextBirthday = new Date(today.getFullYear() + 1, 0, 1); // Setze auf 1. Januar des nächsten Jahres
+
+  birthdays.forEach(birthday => {
+    const birthdate = new Date(birthday.birthday);
+    let nextBirthdate = new Date(today.getFullYear(), birthdate.getMonth(), birthdate.getDate());
+
+    if (nextBirthdate < today) {
+      nextBirthdate.setFullYear(today.getFullYear() + 1);
+    }
+
+    if (nextBirthdate < nextBirthday) {
+      nextBirthday = nextBirthdate;
+      document.getElementById('nextBirthday').innerHTML = birthday.firstName + ' ' + birthday.name + ' ' + nextBirthdate.toDateString();
+    }
+  });
 }

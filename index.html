@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sidebar</title>
   <link rel="stylesheet" href="sidebar.css">
 </head>
+
 <body>
   <div id="sidebar">
-    <h1>Meine Sidebar</h1>
-    <p>Dies ist eine Sidebar, die den Browser erweitert.</p>
+    <div class="nextBirtdayContainer">
+      <h1>Next birthday</h1>
+      <p id="nextBirthday"></p>
+    </div>
     <div class="addBtn">
       <button id="addNew">New</button>
       <div class="create-new d-none" id="create-new__form">
@@ -26,4 +30,5 @@
   </div>
   <script src="script.js"></script>
 </body>
+
 </html>
