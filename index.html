@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sidebar</title>
   <link rel="stylesheet" href="sidebar.css">
 </head>
-
 <body>
-  <header>
-    <div id="sidebar">
-      <h1>Meine Sidebar</h1>
-      <p>Dies ist eine Sidebar, die den Browser erweitert.</p>
+  <div id="sidebar">
+    <h1>Meine Sidebar</h1>
+    <p>Dies ist eine Sidebar, die den Browser erweitert.</p>
+    <div class="addBtn">
+      <button id="addNew">New</button>
+      <div class="create-new d-none" id="create-new__form">
+        <input type="text" id="firstName" placeholder="First Name">
+        <input type="text" id="lastName" placeholder="Last Name">
+        <input type="date" id="birthday">
+        <button id="add">Add</button>
+      </div>
     </div>
-  </header>
-  <main>
     <table id="table">
-      <tr>
-        <th>
-          First Name
-        </th>
-        <th>Last Name</th>
-        <th>Birthdate</th>
-      </tr>
+
     </table>
-
-  </main>
-
+    <div id="errorMessages"></div>
+  </div>
   <script src="script.js"></script>
 </body>
-
 </html>

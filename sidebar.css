@@ -27,6 +27,10 @@ button:hover {
   background-color: #0056b3;
 }
 
+.addBtn {
+  margin-bottom: 5rem;
+}
+
 #table {
   width: 100%;
   border-collapse: collapse;
@@ -37,4 +41,15 @@ button:hover {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+}
+
+.create-new {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+}
+
+.d-none {
+  display: none;
 }
